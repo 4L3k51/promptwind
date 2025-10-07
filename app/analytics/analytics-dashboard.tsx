@@ -46,15 +46,15 @@ type Query = {
     id: string
     model_name: string
     provider: string
-  } | null
+  }[]
   intents: {
     id: string
     label: string
-  } | null
-  brand_mentions: Array<{
+  }[]
+  brand_mentions: {
     id: string
     mentioned: boolean
-  }>
+  }[]
 }
 
 type Intent = {
@@ -101,7 +101,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     const promptSet = new Set<string>()
 
     queries.forEach((query) => {
-      const intent = intents.find((i) => i.id === query.intents?.id)
+      const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
       const category = intent?.categories
       
       if (category) {
@@ -226,7 +226,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     const categoryStats: Record<string, { total: number; mentioned: number; intents: Set<string> }> = {}
     
     filteredQueries.forEach((query) => {
-      const intent = intents.find((i) => i.id === query.intents?.id)
+      const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
       const category = intent?.categories
       
       let categoryName = 'Uncategorized'
@@ -244,7 +244,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
       }
       
       categoryStats[categoryName].total++
-      categoryStats[categoryName].intents.add(query.intents?.label || 'Unknown')
+      categoryStats[categoryName].intents.add(query.intents?.[0]?.label || 'Unknown')
       if (query.brand_mentions?.[0]?.mentioned) {
         categoryStats[categoryName].mentioned++
       }
@@ -267,7 +267,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     const subcategoryStats: Record<string, { total: number; mentioned: number; category: string }> = {}
     
     filteredQueries.forEach((query) => {
-      const intent = intents.find((i) => i.id === query.intents?.id)
+      const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
       const category = intent?.categories
       
       // Only process if it's a subcategory (has parent_id)
@@ -304,11 +304,11 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     const promptStats: Record<string, { total: number; mentioned: number; label: string }> = {}
     
     filteredQueries.forEach((query) => {
-      const promptText = query.prompt_text || query.intents?.label || 'Unknown'
+      const promptText = query.prompt_text || query.intents?.[0]?.label || 'Unknown'
       const key = promptText.substring(0, 100)
       
       if (!promptStats[key]) {
-        promptStats[key] = { total: 0, mentioned: 0, label: query.intents?.label || 'Unknown' }
+        promptStats[key] = { total: 0, mentioned: 0, label: query.intents?.[0]?.label || 'Unknown' }
       }
       
       promptStats[key].total++
@@ -331,7 +331,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
 
   // Group by model
   const byModel = filteredQueries.reduce((acc, query) => {
-    const modelName = query.models?.model_name || 'Unknown'
+    const modelName = query.models?.[0]?.model_name || 'Unknown'
     if (!acc[modelName]) {
       acc[modelName] = { total: 0, mentioned: 0 }
     }
