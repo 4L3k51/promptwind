@@ -34,7 +34,7 @@ type Prompt = {
     name: string
     color: string
     parent_id: string | null
-  } | null
+  }[] | null
 }
 
 type Category = {
@@ -399,8 +399,9 @@ function PromptRow({
   onRunQuery: (promptId: string) => Promise<void>
 }) {
   // Find parent category if exists
-  const parentCategory = prompt.categories?.parent_id
-    ? categories.find((c) => c.id === prompt.categories?.parent_id)
+  const categoryData = prompt.categories?.[0]
+  const parentCategory = categoryData?.parent_id
+    ? categories.find((c) => c.id === categoryData.parent_id)
     : null
 
   return (
@@ -418,24 +419,24 @@ function PromptRow({
           >
             {parentCategory.name}
           </Badge>
-        ) : prompt.categories ? (
+        ) : categoryData ? (
           <Badge
             variant="secondary"
             style={{
-              backgroundColor: `${prompt.categories.color}20`,
-              color: prompt.categories.color,
-              borderColor: prompt.categories.color,
+              backgroundColor: `${categoryData.color}20`,
+              color: categoryData.color,
+              borderColor: categoryData.color,
             }}
           >
-            {prompt.categories.name}
+            {categoryData.name}
           </Badge>
         ) : (
           <span className="text-sm text-gray-400">—</span>
         )}
       </div>
       <div className="col-span-2">
-        {prompt.categories && parentCategory ? (
-          <Badge variant="outline">{prompt.categories.name}</Badge>
+        {categoryData && parentCategory ? (
+          <Badge variant="outline">{categoryData.name}</Badge>
         ) : (
           <span className="text-sm text-gray-400">—</span>
         )}

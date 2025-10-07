@@ -64,7 +64,7 @@ type Intent = {
     id: string
     name: string
     parent_id: string | null
-  } | null
+  }[] | null
 }
 
 type Category = {
@@ -102,7 +102,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
 
     queries.forEach((query) => {
       const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
-      const category = intent?.categories
+      const category = intent?.categories?.[0]
       
       if (category) {
         if (category.parent_id) {
@@ -146,8 +146,8 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     // Category filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((q) => {
-        const intent = intents.find((i) => i.id === q.intents?.id)
-        const category = intent?.categories
+        const intent = intents.find((i) => i.id === q.intents?.[0]?.id)
+        const category = intent?.categories?.[0]
         
         if (!category) return false
         
@@ -164,8 +164,8 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     // Subcategory filter (child categories only)
     if (selectedSubcategories.length > 0) {
       filtered = filtered.filter((q) => {
-        const intent = intents.find((i) => i.id === q.intents?.id)
-        const category = intent?.categories
+        const intent = intents.find((i) => i.id === q.intents?.[0]?.id)
+        const category = intent?.categories?.[0]
         
         if (!category || !category.parent_id) return false
         
@@ -227,7 +227,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     
     filteredQueries.forEach((query) => {
       const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
-      const category = intent?.categories
+      const category = intent?.categories?.[0]
       
       let categoryName = 'Uncategorized'
       if (category) {
@@ -268,7 +268,7 @@ export function AnalyticsDashboard({ queries, intents, categories }: AnalyticsDa
     
     filteredQueries.forEach((query) => {
       const intent = intents.find((i) => i.id === query.intents?.[0]?.id)
-      const category = intent?.categories
+      const category = intent?.categories?.[0]
       
       // Only process if it's a subcategory (has parent_id)
       if (category && category.parent_id) {

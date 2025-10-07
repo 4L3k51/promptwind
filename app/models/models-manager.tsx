@@ -36,7 +36,7 @@ type Model = {
     id: string
     provider: string
     key_name: string | null
-  } | null
+  }[] | null
 }
 
 type ApiKey = {
@@ -95,13 +95,13 @@ export function ModelsManager({ initialModels, apiKeys }: ModelsManagerProps) {
   const [models, setModels] = useState<Model[]>(initialModels)
 
   // Check which templates are already enabled
-  const getEnabledStatus = (templateId: string) => {
+  const getEnabledStatus = (templateId: string): Model | null => {
     const template = MODEL_TEMPLATES.find((t) => t.id === templateId)
     if (!template) return null
     
     return models.find(
       (m) => m.model_name === template.model_name && m.is_active
-    )
+    ) || null
   }
 
   const handleEnableModel = async (templateId: string, apiKeyId: string) => {
@@ -399,7 +399,7 @@ function ModelCard({
                 <div className="rounded-md bg-white p-2 text-sm">
                   <span className="text-gray-600">API Key: </span>
                   <span className="font-medium">
-                    {enabledModel.user_api_keys?.key_name || 'OpenAI Key'}
+                    {enabledModel.user_api_keys?.[0]?.key_name || 'OpenAI Key'}
                   </span>
                 </div>
                 <Button
