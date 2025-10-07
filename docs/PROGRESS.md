@@ -84,6 +84,9 @@ None yet!
 - Using free tier
 - Environment variables configured in .env.local
 
+### Documentation Updates
+- Fixed ARCHITECTURE.md - replaced simple prompt tracker schema with correct AEO tracking tool schema
+
 ### Tech Stack
 - Next.js 15.5.4
 - React 19.1.0
