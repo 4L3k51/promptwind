@@ -59,7 +59,7 @@ export default async function DashboardPage() {
                     Schedule Your Queries
                   </h3>
                   <p className="text-gray-600">
-                    Decide how often you want to run queries on your prompts. We'll track brand mentions and citation rates with statistical confidence intervals.
+                    Decide how often you want to run queries on your prompts. We&apos;ll track brand mentions and citation rates with statistical confidence intervals.
                   </p>
                 </div>
                 <ArrowRight className="h-5 w-5 text-gray-400 shrink-0 ml-4" />
@@ -84,7 +84,7 @@ export default async function DashboardPage() {
 
         {/* What You'll Track */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">What You'll Track</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">What You&apos;ll Track</h2>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-lg border bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
                 Category Performance
               </h3>
               <p className="text-gray-600">
-                Discover which topics and categories you dominate—and which ones you don't. Identify opportunities to improve your AI visibility.
+                Discover which topics and categories you dominate—and which ones you don&apos;t. Identify opportunities to improve your AI visibility.
               </p>
             </div>
 

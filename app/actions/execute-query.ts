@@ -82,7 +82,7 @@ export async function executeQuery(intentId: string, modelId: string) {
         if (errorJson.error?.message) {
           errorMessage += ` - ${errorJson.error.message}`
         }
-      } catch (e) {
+      } catch {
         errorMessage += ` - ${errorText.substring(0, 200)}`
       }
       
@@ -93,7 +93,7 @@ export async function executeQuery(intentId: string, modelId: string) {
     console.log('OpenAI Response:', JSON.stringify(responseData, null, 2))
 
     // 5. Extract the text and citations
-    const messageItem = responseData.output?.find((item: any) => item.type === 'message')
+    const messageItem = responseData.output?.find((item: { type: string }) => item.type === 'message')
     const responseText = messageItem?.content?.[0]?.text || ''
     const citations = messageItem?.content?.[0]?.annotations || []
 

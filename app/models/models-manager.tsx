@@ -261,7 +261,7 @@ export function ModelsManager({ initialModels, apiKeys }: ModelsManagerProps) {
             </h3>
             <div className="mt-2 text-sm text-blue-700">
               <p>
-                All models use OpenAI's Responses API with web_search tool for
+                All models use OpenAI&apos;s Responses API with web_search tool for
                 real-time information and citations.
               </p>
             </div>

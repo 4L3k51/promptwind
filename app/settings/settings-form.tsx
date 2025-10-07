@@ -91,7 +91,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
         </CardHeader>
         <CardContent className="space-y-2 text-sm text-gray-600">
           <p>
-            You're using your own API keys, so you pay LLM providers directly. We don't charge for API usage.
+            You&apos;re using your own API keys, so you pay LLM providers directly. We don&apos;t charge for API usage.
           </p>
           <p>
             Check your OpenAI dashboard for detailed billing information.

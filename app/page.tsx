@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowRight, Key, BarChart3, Settings, CheckCircle2, TrendingUp, Shield } from 'lucide-react'
+import { ArrowRight, Key, BarChart3, Settings, CheckCircle2 } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -120,7 +120,7 @@ export default function HomePage() {
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
                 <BarChart3 className="h-6 w-6 text-primary" />
-                <CardTitle className="text-xl">See What's Actually Happening</CardTitle>
+                <CardTitle className="text-xl">See What&apos;s Actually Happening</CardTitle>
               </div>
               <p className="text-sm text-gray-600">Track citation patterns with confidence.</p>
             </CardHeader>
@@ -139,7 +139,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
-                <span>See which queries mention you and which don't</span>
+                <span>See which queries mention you and which don&apos;t</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
@@ -165,7 +165,7 @@ export default function HomePage() {
             <CardContent className="space-y-3 text-sm text-gray-600">
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
-                <span>Define your key queries ("best CRM," "database comparison," etc.)</span>
+                <span>Define your key queries (&quot;best CRM,&quot; &quot;database comparison,&quot; etc.)</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
@@ -204,7 +204,7 @@ export default function HomePage() {
               </div>
               <h3 className="font-semibold mb-2">Connect Your API Keys</h3>
               <p className="text-sm text-gray-600">
-                Add your OpenAI, Anthropic, or Google keys. They're encrypted and stored securely.
+                Add your OpenAI, Anthropic, or Google keys. They&apos;re encrypted and stored securely.
               </p>
             </div>
 
@@ -214,7 +214,7 @@ export default function HomePage() {
               </div>
               <h3 className="font-semibold mb-2">Define What to Track</h3>
               <p className="text-sm text-gray-600">
-                Set up "intents" - the business questions you care about. Example: "What are the best databases for startups?"
+                Set up &quot;intents&quot; - the business questions you care about. Example: &quot;What are the best databases for startups?&quot;
               </p>
             </div>
 

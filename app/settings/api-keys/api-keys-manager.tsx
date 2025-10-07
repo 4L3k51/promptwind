@@ -111,11 +111,6 @@ export function ApiKeysManager({ initialApiKeys }: ApiKeysManagerProps) {
     router.refresh()
   }
 
-  const maskApiKey = (key: string) => {
-    if (key.length <= 8) return '••••••••'
-    return `${key.slice(0, 4)}••••••••${key.slice(-4)}`
-  }
-
   const getProviderInfo = (provider: string) => {
     return PROVIDERS.find((p) => p.value === provider) || PROVIDERS[0]
   }
