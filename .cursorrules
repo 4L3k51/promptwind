@@ -1,0 +1,189 @@
+# Cursor Rules for LLM Prompt Tracker Project
+
+## Project Context
+This is a Next.js 14 app using Supabase (no separate backend), TypeScript, and shadcn/ui.
+
+## Code Style
+- Use TypeScript strict mode
+- Use functional components with hooks (no class components)
+- Use async/await instead of .then()
+- Prefer named exports over default exports
+- Use the @/ alias for imports from root
+- Use descriptive variable and function names
+- Add JSDoc comments for complex functions
+
+## File Organization
+- Server components in app/ directory
+- Client components marked with 'use client'
+- Shared components in components/ directory
+- Utilities in lib/ directory
+- Types in types/ directory
+- Keep files under 300 lines when possible
+
+## Supabase Usage
+- Client components: import { createClient } from '@/lib/supabase/client'
+- Server components: import { createClient } from '@/lib/supabase/server'
+- Always handle errors from Supabase calls
+- Use TypeScript types generated from Supabase schema
+- Never expose service_role key to frontend
+
+## UI Components
+- Use shadcn/ui components from @/components/ui
+- Use the cn() utility for className merging
+- Keep components small and focused
+- Use Tailwind CSS for styling (no custom CSS unless necessary)
+- Follow shadcn/ui patterns for component composition
+
+## Best Practices
+- Enable Row Level Security on all tables
+- Use environment variables for all secrets
+- Write descriptive commit messages
+- Update PROGRESS.md after completing tasks
+- Update CURSOR_INSTRUCTIONS.md with any new patterns or decisions
+- Test locally before committing
+
+## Database
+- Always use RLS (Row Level Security)
+- Create policies for SELECT, INSERT, UPDATE, DELETE
+- Use auth.uid() for user identification
+- Index frequently queried columns
+- Use appropriate data types (uuid, timestamp, jsonb, etc.)
+
+## Security Checklist
+- [ ] RLS enabled on all tables
+- [ ] Policies enforce user-specific access
+- [ ] No service_role key in frontend code
+- [ ] Environment variables properly set
+- [ ] User input validated before database operations
+- [ ] SQL injection prevented (use parameterized queries)
+
+## Performance
+- Use React Server Components when possible
+- Implement pagination for lists
+- Lazy load heavy components
+- Optimize images with next/image
+- Minimize client-side JavaScript
+
+## Error Handling
+- Always try/catch async operations
+- Provide user-friendly error messages
+- Log errors appropriately
+- Never expose sensitive error details to users
+
+## Git Workflow
+- Create feature branches from main
+- Write clear commit messages (present tense)
+- Keep commits atomic and focused
+- Update documentation with changes
+- Don't commit .env.local or secrets
+
+## Testing
+- Test authentication flows
+- Test database operations
+- Test edge cases (empty states, errors)
+- Test responsive design
+- Test with different user roles
+
+## Common Patterns
+
+### Client Component with Supabase
+```typescript
+'use client'
+import { createClient } from '@/lib/supabase/client'
+import { useEffect, useState } from 'react'
+
+export function MyComponent() {
+  const [data, setData] = useState([])
+  const supabase = createClient()
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data, error } = await supabase.from('table').select('*')
+      if (error) console.error(error)
+      else setData(data)
+    }
+    fetchData()
+  }, [])
+
+  return <div>{/* render data */}</div>
+}
+```
+
+### Server Component with Supabase
+```typescript
+import { createClient } from '@/lib/supabase/server'
+
+export default async function MyPage() {
+  const supabase = await createClient()
+  const { data, error } = await supabase.from('table').select('*')
+
+  if (error) return <div>Error loading data</div>
+
+  return <div>{/* render data */}</div>
+}
+```
+
+### Form with shadcn
+```typescript
+'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { Button } from '@/components/ui/button'
+import { Form, FormField, FormItem, FormLabel } from '@/components/ui/form'
+
+const formSchema = z.object({
+  // schema definition
+})
+
+export function MyForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  })
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // handle submission
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        {/* form fields */}
+      </form>
+    </Form>
+  )
+}
+```
+
+## Documentation Updates
+When completing a task:
+1. Update PROGRESS.md with completed items
+2. Add notes to CURSOR_INSTRUCTIONS.md if new patterns emerge
+3. Update ARCHITECTURE.md if structure changes
+4. Commit with descriptive message
+
+## Don't
+- Don't use class components
+- Don't use .then() chains (use async/await)
+- Don't hardcode secrets or API keys
+- Don't skip RLS policies
+- Don't commit large files or node_modules
+- Don't use Tailwind v4 (stay on v3 for shadcn compatibility)
+- Don't create custom CSS files unless absolutely necessary
+- Don't ignore TypeScript errors
+
+## Do
+- Do use TypeScript types everywhere
+- Do handle all error cases
+- Do write clean, readable code
+- Do keep components focused and small
+- Do use semantic HTML
+- Do follow accessibility best practices
+- Do test your changes locally
+- Do update documentation
+
+---
+
+**Last Updated:** October 7, 2025
+**Project Version:** 1.0.0-alpha
+
