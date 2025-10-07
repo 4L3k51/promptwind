@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { PromptsGrid } from './prompts-grid'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Prompts - PromptWind',
+  description: 'Manage your LLM prompts and organize them by category',
+}
 
 export default async function PromptsPage() {
   const supabase = await createClient()

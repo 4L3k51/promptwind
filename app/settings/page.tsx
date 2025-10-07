@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { SettingsForm } from './settings-form'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Settings - PromptWind',
+  description: 'Manage your account settings and preferences',
+}
 
 export default async function SettingsPage() {
   const supabase = await createClient()

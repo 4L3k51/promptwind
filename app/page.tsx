@@ -3,6 +3,12 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowRight, Key, BarChart3, Settings, CheckCircle2 } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'PromptWind - Statistical rigor at the lowest costs',
+  description: 'Track how AI models cite your brand. Use your own API keys, control your costs, and get actionable insights to improve your AI visibility.',
+}
 
 export default function HomePage() {
   return (

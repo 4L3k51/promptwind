@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { ApiKeysManager } from './api-keys-manager'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'API Keys - PromptWind',
+  description: 'Manage your LLM provider API keys securely',
+}
 
 export default async function ApiKeysPage() {
   const supabase = await createClient()

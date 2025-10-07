@@ -3,6 +3,12 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { ArrowRight } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Dashboard - PromptWind',
+  description: 'Get started with PromptWind - track how LLMs cite your brand',
+}
 
 export default async function DashboardPage() {
   const supabase = await createClient()

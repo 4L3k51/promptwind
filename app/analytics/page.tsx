@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { AnalyticsDashboard } from './analytics-dashboard'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Analytics - PromptWind',
+  description: 'Track brand mentions and citation rates with Wilson confidence intervals',
+}
 
 export default async function AnalyticsPage() {
   const supabase = await createClient()

@@ -5,6 +5,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 
 export default function AuthPage() {
   const supabase = createClient()

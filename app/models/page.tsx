@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AppLayout } from '@/components/layouts/app-layout'
 import { ModelsManager } from './models-manager'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Models - PromptWind',
+  description: 'Configure OpenAI models with web search for citation tracking',
+}
 
 export default async function ModelsPage() {
   const supabase = await createClient()
